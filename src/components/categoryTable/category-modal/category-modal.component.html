@@ -1,0 +1,40 @@
+<div class="category-modal">
+  <button mat-stroked-button class="close" (click)="closeModal(null)">
+    <span>&times;</span>
+  </button>
+  <h3>{{ mode }}</h3>
+  <hr />
+  <form [formGroup]="categoryForm" class="category-form">
+    <table>
+      <tr>
+        <td>
+          <mat-form-field>
+            <mat-label>Category</mat-label>
+            <input matInput formControlName="category" />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field>
+            <mat-label>Subcategory</mat-label>
+            <input matInput formControlName="subCategory" />
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <div>
+      <button mat-raised-button color="primary" (click)="saveCategoryClicked()">
+        Save
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="isDeleteDisabled"
+        (click)="deleteCategoryClicked()"
+      >
+        Delete
+      </button>
+    </div>
+  </form>
+</div>
