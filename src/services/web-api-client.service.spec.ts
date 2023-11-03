@@ -57,7 +57,7 @@ describe('WebApiClientService', () => {
     };
 
     service.saveCategory(fakeCat).subscribe((cats) => {
-      expect(cats).toEqual(undefined);
+      expect(cats).toEqual(fakeCat);
     });
 
     const request = httpController.expectOne(`${baseUrl}/api/1/category`);
@@ -73,7 +73,7 @@ describe('WebApiClientService', () => {
     };
 
     service.deleteCategory(fakeCat).subscribe((cats) => {
-      expect(cats).toEqual(undefined);
+      expect(cats).toEqual(fakeCat);
     });
 
     const request = httpController.expectOne(
