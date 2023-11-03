@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { categoryDto } from 'src/poco/categoryDto';
+import { categoryDto } from 'src/common/elements/categoryDto';
 import { Observable, map } from 'rxjs';
 import { WEB_API_DEMO_ENDPOINT } from 'src/app/app.tokens';
 

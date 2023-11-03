@@ -1,7 +1,7 @@
 import { Component, Optional, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
-import { categoryDto } from 'src/poco/categoryDto';
+import { categoryDto } from 'src/common/elements/categoryDto';
 
 @Component({
   selector: 'app-category-modal',

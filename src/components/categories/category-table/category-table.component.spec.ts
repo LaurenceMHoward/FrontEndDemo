@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CategoryTableComponent } from './category-table.component';
-import { WebApiClientService } from 'src/services/web-api-client.service';
+import { WebApiClientService } from 'src/common/services/web-api-client.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientTestingModule } from '@angular/common/http/testing';

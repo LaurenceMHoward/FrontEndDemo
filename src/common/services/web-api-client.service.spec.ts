@@ -5,7 +5,7 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { categoryDto } from 'src/poco/categoryDto';
+import { categoryDto } from 'src/common/elements/categoryDto';
 import { WEB_API_DEMO_ENDPOINT } from 'src/app/app.tokens';
 
 describe('WebApiClientService', () => {
