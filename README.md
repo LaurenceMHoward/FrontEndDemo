@@ -1,6 +1,6 @@
 # FrontEndDemo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.6 and recently updated to 17.2.0
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16 and recently updated to 17
 
 ## Development server
 
