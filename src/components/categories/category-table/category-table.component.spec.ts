@@ -4,10 +4,11 @@ import { CategoryTableComponent } from './category-table.component';
 import { WebApiClientService } from 'src/common/services/web-api-client.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { WEB_API_DEMO_ENDPOINT } from 'src/app/app.tokens';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('CategoryTableComponent', () => {
   let component: CategoryTableComponent;
@@ -16,19 +17,18 @@ describe('CategoryTableComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        WebApiClientService,
-        { provide: WEB_API_DEMO_ENDPOINT, useValue: baseUrl },
-      ],
-      imports: [
-        HttpClientTestingModule,
-        MatDialogModule,
+    declarations: [CategoryTableComponent],
+    imports: [MatDialogModule,
         MatSnackBarModule,
         MatPaginatorModule,
-        MatTableModule,
-      ],
-      declarations: [CategoryTableComponent],
-    });
+        MatTableModule],
+    providers: [
+        WebApiClientService,
+        { provide: WEB_API_DEMO_ENDPOINT, useValue: baseUrl },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+});
     fixture = TestBed.createComponent(CategoryTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
