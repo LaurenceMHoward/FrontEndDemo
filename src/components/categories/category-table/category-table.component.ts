@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { categoryDto } from 'src/common/elements/categoryDto';
-import { WebApiClientService } from 'src/common/services/web-api-client.service';
+import { WebApiClientService } from '../../../common/services/web-api-client.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import {
@@ -8,7 +8,7 @@ import {
   MatDialogConfig,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { CategoryModalComponent } from 'src/components/categories/category-modal/category-modal.component';
+import { CategoryModalComponent } from '../category-modal/category-modal.component';
 
 @Component({
   selector: 'app-category-table',

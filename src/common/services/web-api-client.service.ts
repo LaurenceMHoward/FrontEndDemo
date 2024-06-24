@@ -1,8 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { categoryDto } from 'src/common/elements/categoryDto';
+import { categoryDto } from '../../common/elements/categoryDto';
 import { Observable, map } from 'rxjs';
-import { WEB_API_DEMO_ENDPOINT } from 'src/app/app.tokens';
+import { WEB_API_DEMO_ENDPOINT } from '../../app/app.tokens';
 
 @Injectable({
   providedIn: 'root',
