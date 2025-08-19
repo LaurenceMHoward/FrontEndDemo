@@ -11,9 +11,10 @@ import {
 import { CategoryModalComponent } from '../category-modal/category-modal.component';
 
 @Component({
-  selector: 'app-category-table',
-  templateUrl: './category-table.component.html',
-  styleUrls: ['./category-table.component.less'],
+    selector: 'app-category-table',
+    templateUrl: './category-table.component.html',
+    styleUrls: ['./category-table.component.less'],
+    standalone: false
 })
 export class CategoryTableComponent implements OnInit, AfterViewInit {
   categories: categoryDto[] = [];

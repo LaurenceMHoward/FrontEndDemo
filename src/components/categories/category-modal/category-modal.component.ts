@@ -4,9 +4,10 @@ import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { categoryDto } from 'src/common/elements/categoryDto';
 
 @Component({
-  selector: 'app-category-modal',
-  templateUrl: './category-modal.component.html',
-  styleUrls: ['./category-modal.component.less'],
+    selector: 'app-category-modal',
+    templateUrl: './category-modal.component.html',
+    styleUrls: ['./category-modal.component.less'],
+    standalone: false
 })
 export class CategoryModalComponent {
   categoryForm: FormGroup = new FormGroup({
