@@ -1,32 +1,22 @@
-import { TestBed } from '@angular/core/testing';
+import { vi } from 'vitest';
+import { of } from 'rxjs';
 
 import { WebApiClientService } from './web-api-client.service';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
-import { HttpClientModule } from '@angular/common/http';
 import { categoryDto } from 'src/common/elements/categoryDto';
-import { WEB_API_DEMO_ENDPOINT } from '../../../src/app/app.tokens';
 
 describe('WebApiClientService', () => {
   let service: WebApiClientService;
-  let httpController: HttpTestingController;
   let baseUrl: string = 'https://localhost:7071';
+  let httpClient: any;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientModule, HttpClientTestingModule],
-      providers: [
-        { provide: WEB_API_DEMO_ENDPOINT, useValue: baseUrl },
-      ],
-    });
-    service = TestBed.inject(WebApiClientService);
-    httpController = TestBed.inject(HttpTestingController);
-  });
+    httpClient = {
+      get: vi.fn().mockReturnValue(of([])),
+      put: vi.fn().mockReturnValue(of(null)),
+      delete: vi.fn().mockReturnValue(of(null)),
+    };
 
-  afterEach(() => {
-    httpController.verify();
+    service = new WebApiClientService(baseUrl, httpClient);
   });
 
   it('should be created', () => {
@@ -39,14 +29,14 @@ describe('WebApiClientService', () => {
       { category: 'cat2', subCategory: 'sub2', id: 'id2' },
     ];
 
+    httpClient.get.mockReturnValue(of(fakeCats));
+
     service.getCategories().subscribe((cats) => {
       expect(cats.length).toBe(2);
       expect(cats).toEqual(fakeCats);
     });
 
-    const request = httpController.expectOne(`${baseUrl}/api/1/category`);
-    expect(request.request.method).toBe('GET');
-    request.flush(fakeCats);
+    expect(httpClient.get).toHaveBeenCalledWith(`${baseUrl}/api/1/category`);
   });
 
   it('should save a category', () => {
@@ -56,13 +46,13 @@ describe('WebApiClientService', () => {
       id: 'id1',
     };
 
-    service.saveCategory(fakeCat).subscribe((cats) => {
-      expect(cats).toEqual(fakeCat);
+    httpClient.put.mockReturnValue(of(fakeCat));
+
+    service.saveCategory(fakeCat).subscribe((cat) => {
+      expect(cat).toEqual(fakeCat);
     });
 
-    const request = httpController.expectOne(`${baseUrl}/api/1/category`);
-    expect(request.request.method).toBe('PUT');
-    request.flush(fakeCat);
+    expect(httpClient.put).toHaveBeenCalledWith(`${baseUrl}/api/1/category`, fakeCat);
   });
 
   it('should delete a category', () => {
@@ -72,14 +62,12 @@ describe('WebApiClientService', () => {
       id: 'id1',
     };
 
-    service.deleteCategory(fakeCat).subscribe((cats) => {
-      expect(cats).toEqual(fakeCat);
+    httpClient.delete.mockReturnValue(of(fakeCat));
+
+    service.deleteCategory(fakeCat).subscribe((cat) => {
+      expect(cat).toEqual(fakeCat);
     });
 
-    const request = httpController.expectOne(
-      `${baseUrl}/api/1/category/${fakeCat.id}`
-    );
-    expect(request.request.method).toBe('DELETE');
-    request.flush(fakeCat);
+    expect(httpClient.delete).toHaveBeenCalledWith(`${baseUrl}/api/1/category/${fakeCat.id}`);
   });
 });
