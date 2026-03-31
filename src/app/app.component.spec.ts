@@ -11,3 +11,4 @@ describe('AppComponent', () => {
     expect(app.title).toBe('FrontEndDemo');
   });
 });
+

@@ -7,18 +7,16 @@ import {
   platformBrowserTesting,
 } from '@angular/platform-browser/testing';
 
-declare global {
-  var jasmine: any;
-  var createSpy: any;
-  var spyOn: typeof vi.spyOn;
-  var jest: any;
-}
-
-// Initialize the Angular testing environment once.
 getTestBed().initTestEnvironment(
   BrowserTestingModule,
   platformBrowserTesting(),
 );
+
+declare global {
+  var jasmine: any;
+  var createSpy: any;
+  var spyOn: typeof vi.spyOn;
+}
 
 if (!globalThis.jasmine) {
   globalThis.jasmine = {
