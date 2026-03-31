@@ -2,15 +2,12 @@ import { TestBed } from '@angular/core/testing';
 
 import { WebApiClientService } from './web-api-client.service';
 import {
+  HttpClientTestingModule,
   HttpTestingController,
-  provideHttpClientTesting,
 } from '@angular/common/http/testing';
+import { HttpClientModule } from '@angular/common/http';
 import { categoryDto } from 'src/common/elements/categoryDto';
 import { WEB_API_DEMO_ENDPOINT } from '../../../src/app/app.tokens';
-import {
-  provideHttpClient,
-  withInterceptorsFromDi,
-} from '@angular/common/http';
 
 describe('WebApiClientService', () => {
   let service: WebApiClientService;
@@ -19,12 +16,9 @@ describe('WebApiClientService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [],
+      imports: [HttpClientModule, HttpClientTestingModule],
       providers: [
-        WebApiClientService,
         { provide: WEB_API_DEMO_ENDPOINT, useValue: baseUrl },
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
       ],
     });
     service = TestBed.inject(WebApiClientService);
